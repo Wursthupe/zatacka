@@ -363,13 +363,13 @@ public class Game extends JFrame {
 			setStatus("Game Over! " + p_loose.getName() + " hat verloren!");
 			gameRunning = false;
 		} else {
-			double x, y;
+//			double x, y;
 			
-			x = p1.getX(); y = p1.getY();
-			p1.addPoint(new Point2D.Double(x, y));
+//			x = p1.getX(); y = p1.getY();
+			p1.addPoint(p1.getSnakeHead());
 			
-			x = p2.getX(); y = p2.getY();
-			p2.addPoint(new Point2D.Double(x, y));
+//			x = p2.getX(); y = p2.getY();
+			p2.addPoint(p2.getSnakeHead());
 		}
 
 		field.setPoints_p1(p1.getPoints());

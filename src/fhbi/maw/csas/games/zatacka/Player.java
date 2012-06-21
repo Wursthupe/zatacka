@@ -11,8 +11,7 @@ public class Player {
 
 	private String name;
 
-	private int x;
-	private int y;
+	private double x, y;
 
 	// Use by Graphics2D
 	private Point2D point_snakehead;
@@ -35,12 +34,15 @@ public class Player {
 	 */
 	public Player(String name, Point2D point2d, Direction direction, KeyConfiguration keyConf) {
 		this.name = name;
+		
 		this.point_snakehead = point2d;
-		this.setX((int) this.point_snakehead.getX());
-		this.setY((int) this.point_snakehead.getY());
+		this.x = point2d.getX();
+		this.y = point2d.getY();
+		
 		this.setDirection(direction);
-		points = new ArrayList<Point2D>();
 		this.keyConf = keyConf;
+		
+		points = new ArrayList<Point2D>();
 	}
 
 	/**
@@ -53,12 +55,15 @@ public class Player {
 	 */
 	public Player(String name, int x, int y, Direction direction, KeyConfiguration keyConf) {
 		this.name = name;
-		this.setX(x);
-		this.setY(y);
+		
 		this.point_snakehead = new Point2D.Double(x, y);
+		this.x = x;
+		this.y = y;
+		
 		this.setDirection(direction);
-		points = new ArrayList<Point2D>();
 		this.keyConf = keyConf;
+		
+		points = new ArrayList<Point2D>();
 	}
 
 	public String getName() {
@@ -73,21 +78,21 @@ public class Player {
 		this.point_snakehead = snakehead;
 	}
 
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
+//	public int getY() {
+//		return y;
+//	}
+//
+//	public void setY(int y) {
+//		this.y = y;
+//	}
+//
+//	public int getX() {
+//		return x;
+//	}
+//
+//	public void setX(int x) {
+//		this.x = x;
+//	}
 
 	public Direction getDirection() {
 		return direction;
@@ -99,13 +104,13 @@ public class Player {
 
 	public void move() {
 		if (direction == Direction.NORTH) {
-			this.y -= 1;
+			this.y--;
 		} else if (direction == Direction.EAST) {
-			this.x += 1;
+			this.x++;
 		} else if (direction == Direction.SOUTH) {
-			this.y += 1;
+			this.y++;
 		} else if (direction == Direction.WEST) {
-			this.x -= 1;
+			this.x--;
 		}
 
 		Point2D p = new Point2D.Double(x, y);
