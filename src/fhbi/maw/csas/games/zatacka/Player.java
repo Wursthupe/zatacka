@@ -9,8 +9,10 @@ import java.util.ArrayList;
  */
 public class Player {
 
+	// name of the player
 	private String name;
 
+	// for easier moving the snake
 	private double x, y;
 
 	// Use by Graphics2D
@@ -27,10 +29,10 @@ public class Player {
 
 	/**
 	 * Initializes a player with given parameters.
-	 * @param name
-	 * @param point2d
-	 * @param direction
-	 * @param keyConf
+	 * @param name Name of the player
+	 * @param point2d Starting point
+	 * @param direction Direction at start the snake is moving
+	 * @param keyConf A KeyConfiguration for moving the snake to left, right, up and down
 	 */
 	public Player(String name, Point2D point2d, Direction direction, KeyConfiguration keyConf) {
 		this.name = name;
@@ -47,36 +49,39 @@ public class Player {
 
 	/**
 	 * Initializes a player with given parameters.
-	 * @param name
-	 * @param x
-	 * @param y
-	 * @param direction
-	 * @param keyConf
+	 * @param name Name of the player
+	 * @param x the X-Coordinate for starting point
+	 * @param y the Y-Coordinate for starting point
+	 * @param direction Direction at start the snake is moving
+	 * @param keyConf A KeyConfiguration for moving the snake to left, right, up and down
 	 */
 	public Player(String name, int x, int y, Direction direction, KeyConfiguration keyConf) {
-		this.name = name;
-		
-		this.point_snakehead = new Point2D.Double(x, y);
-		this.x = x;
-		this.y = y;
-		
-		this.setDirection(direction);
-		this.keyConf = keyConf;
-		
-		points = new ArrayList<Point2D>();
+		this(name, new Point2D.Double(x, y), direction, keyConf);
 	}
 
+	/**
+	 * Returns the player name
+	 * @return name of the player
+	 */
 	public String getName() {
 		return this.name;
 	}
 
+	/**
+	 * Return the actual position of the snake head
+	 * @return snake head
+	 */
 	public Point2D getSnakeHead() {
 		return this.point_snakehead;
 	}
 
-	public void setSnakeHead(Point2D snakehead) {
-		this.point_snakehead = snakehead;
-	}
+//	/**
+//	 * 
+//	 * @param snakehead
+//	 */
+//	public void setSnakeHead(Point2D snakehead) {
+//		this.point_snakehead = snakehead;
+//	}
 
 //	public int getY() {
 //		return y;
@@ -94,14 +99,27 @@ public class Player {
 //		this.x = x;
 //	}
 
+	/**
+	 * Returns the direction the snake is moving
+	 * @return move direction
+	 */
 	public Direction getDirection() {
 		return direction;
 	}
 
+	/**
+	 * Sets the direction the snake is moving next
+	 * @param direction new direction
+	 */
 	public void setDirection(Direction direction) {
 		this.direction = direction;
 	}
 
+	/**
+	 * Lets the snake move one pixel based on the direction.
+	 * <br>
+	 * Sets the snake head on the new position 
+	 */
 	public void move() {
 		if (direction == Direction.NORTH) {
 			this.y--;
@@ -113,14 +131,21 @@ public class Player {
 			this.x--;
 		}
 
-		Point2D p = new Point2D.Double(x, y);
-		setSnakeHead(p);
+		this.point_snakehead = new Point2D.Double(x, y);
 	}
 	
+	/**
+	 * Adds a point the snake moved along
+	 * @param p point to add
+	 */
 	public void addPoint(Point2D p) {
 		points.add(p);
 	}
 
+	/**
+	 * Returns a list of points the snake was moving
+	 * @return list of points the snake was moving
+	 */
 	public ArrayList<Point2D> getPoints() {
 		return points;
 	}
