@@ -112,7 +112,7 @@ public class Game extends JFrame {
 
 		gameRunning = false;
 
-		speed_ms = 10;
+		speed_ms = 5;
 
 		this.p1_name = p1_name;
 		this.p2_name = p2_name;

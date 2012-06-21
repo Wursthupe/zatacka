@@ -12,13 +12,13 @@ public class Player {
 	// name of the player
 	private String name;
 
-	// for easier moving the snake
+	// for easier moving the snake internally
 	private double x, y;
 
-	// Use by Graphics2D
+	// point of the snake head
 	private Point2D point_snakehead;
 
-	// Use by Zatacka-Rules
+	// direction the snake is moving
 	private Direction direction;
 
 	// a key configuration to navigate the snake
@@ -150,18 +150,34 @@ public class Player {
 		return points;
 	}
 
+	/**
+	 * Returns the key to move right (east)
+	 * @return the right-key
+	 */
 	public char getRightKey() {
 		return keyConf.getRightKey();
 	}
 
+	/**
+	 * Returns the key to move left (west)
+	 * @return the left-key
+	 */
 	public char getLeftKey() {
 		return keyConf.getLeftKey();
 	}
 
+	/**
+	 * Returns the key to move up (north)
+	 * @return the up-key
+	 */
 	public char getUpKey() {
 		return keyConf.getUpKey();
 	}
 
+	/**
+	 * Returns the key to move down (south)
+	 * @return the down-key
+	 */
 	public char getDownKey() {
 		return keyConf.getDownKey();
 	}
