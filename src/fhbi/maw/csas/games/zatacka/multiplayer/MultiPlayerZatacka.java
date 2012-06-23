@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fhbi.maw.csas.games.zatacka;
+package fhbi.maw.csas.games.zatacka.multiplayer;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -26,12 +26,17 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
+import fhbi.maw.csas.games.zatacka.Direction;
+import fhbi.maw.csas.games.zatacka.Field;
+import fhbi.maw.csas.games.zatacka.KeyConfiguration;
+import fhbi.maw.csas.games.zatacka.Player;
+
 /**
  * @author Christian Stührmann
  * @author Alexander Sundermann
  */
 @SuppressWarnings("serial")
-public class TwoPlayerZatacka extends JFrame {
+public class MultiPlayerZatacka extends JFrame {
 
 	// Fenstergröße, wird statisch und unveränderlich gehalten!
 	private Dimension windowSize;
@@ -76,7 +81,7 @@ public class TwoPlayerZatacka extends JFrame {
 	/**
 	 * @throws HeadlessException
 	 */
-	public TwoPlayerZatacka() throws HeadlessException {
+	public MultiPlayerZatacka() throws HeadlessException {
 		this("Simple MultiPlayerZatacka", "Player 1", "Player 2");
 	}
 
@@ -90,7 +95,7 @@ public class TwoPlayerZatacka extends JFrame {
 	 * @param p2_name name of player 2
 	 * @throws HeadlessException
 	 */
-	public TwoPlayerZatacka(String title, String p1_name, String p2_name)
+	public MultiPlayerZatacka(String title, String p1_name, String p2_name)
 			throws HeadlessException {
 		super(title);
 
@@ -450,8 +455,10 @@ public class TwoPlayerZatacka extends JFrame {
 			char c = Character.toLowerCase(ke.getKeyChar());
 			
 			// type CTRL + N to start a new game
-			if (ke.getKeyCode() == KeyEvent.VK_N && ke.isControlDown())
+			if (ke.getKeyCode() == KeyEvent.VK_N && ke.isControlDown()) {
 				newGame();
+				return;
+			}
 
 			// if players were'nt initialised, stop caching keys,
 			// else an error will result
@@ -461,10 +468,14 @@ public class TwoPlayerZatacka extends JFrame {
 			// pause a running game by typing CTRL + P
 			if (ke.getKeyCode() == KeyEvent.VK_P && ke.isControlDown())
 				if (gameRunning)
-					if (gamePaused)
+					if (gamePaused) {
 						resumeGame();
-					else
+						return;
+					}
+					else {
 						pauseGame();
+						return;
+					}
 
 			// Command to move left (west)
 			if (p1.getLeftKey() == c && p1.getDirection() != Direction.EAST)
@@ -473,19 +484,19 @@ public class TwoPlayerZatacka extends JFrame {
 				p2.setDirection(Direction.WEST);
 			
 			// Command to move up (north)
-			if (p1.getUpKey() == c && p1.getDirection() != Direction.SOUTH)
+			else if (p1.getUpKey() == c && p1.getDirection() != Direction.SOUTH)
 				p1.setDirection(Direction.NORTH);
 			else if (p2.getUpKey() == c && p2.getDirection() != Direction.SOUTH)
 				p2.setDirection(Direction.NORTH);
 			
 			// Command to move right (east)
-			if (p1.getRightKey() == c && p1.getDirection() != Direction.WEST)
+			else if (p1.getRightKey() == c && p1.getDirection() != Direction.WEST)
 				p1.setDirection(Direction.EAST);
 			else if (p2.getRightKey() == c && p2.getDirection() != Direction.WEST)
 				p2.setDirection(Direction.EAST);
 			
 			// Command to move down (south)
-			if (p1.getDownKey() == c && p1.getDirection() != Direction.NORTH)
+			else if (p1.getDownKey() == c && p1.getDirection() != Direction.NORTH)
 				p1.setDirection(Direction.SOUTH);
 			else if (p2.getDownKey() == c && p2.getDirection() != Direction.NORTH)
 				p2.setDirection(Direction.SOUTH);
