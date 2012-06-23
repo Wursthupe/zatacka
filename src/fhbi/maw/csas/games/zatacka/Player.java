@@ -1,5 +1,6 @@
 package fhbi.maw.csas.games.zatacka;
 
+import java.awt.Color;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
@@ -26,6 +27,9 @@ public class Player {
 
 	// points the snake ran along
 	private ArrayList<Point2D> points;
+	
+	// color of the snake
+	private Color color;
 
 	/**
 	 * Initializes a player with given parameters.
@@ -33,13 +37,16 @@ public class Player {
 	 * @param point2d Starting point
 	 * @param direction Direction at start the snake is moving
 	 * @param keyConf A KeyConfiguration for moving the snake to left, right, up and down
+	 * @param color Color of the snake
 	 */
-	public Player(String name, Point2D point2d, Direction direction, KeyConfiguration keyConf) {
+	public Player(String name, Point2D point2d, Direction direction, KeyConfiguration keyConf, Color color) {
 		this.name = name;
 		
 		this.point_snakehead = point2d;
 		this.x = point2d.getX();
 		this.y = point2d.getY();
+		
+		this.setColor(color);
 		
 		this.setDirection(direction);
 		this.keyConf = keyConf;
@@ -54,9 +61,10 @@ public class Player {
 	 * @param y the Y-Coordinate for starting point
 	 * @param direction Direction at start the snake is moving
 	 * @param keyConf A KeyConfiguration for moving the snake to left, right, up and down
+	 * @param color Color of the snake
 	 */
-	public Player(String name, int x, int y, Direction direction, KeyConfiguration keyConf) {
-		this(name, new Point2D.Double(x, y), direction, keyConf);
+	public Player(String name, int x, int y, Direction direction, KeyConfiguration keyConf, Color color) {
+		this(name, new Point2D.Double(x, y), direction, keyConf, color);
 	}
 
 	/**
@@ -156,6 +164,20 @@ public class Player {
 	 */
 	public char getDownKey() {
 		return keyConf.getDownKey();
+	}
+
+	/**
+	 * @return the color
+	 */
+	public Color getColor() {
+		return color;
+	}
+
+	/**
+	 * @param color the color to set
+	 */
+	public void setColor(Color color) {
+		this.color = color;
 	}
 
 }

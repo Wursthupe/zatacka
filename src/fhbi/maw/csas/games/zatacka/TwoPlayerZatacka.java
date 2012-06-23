@@ -77,7 +77,7 @@ public class TwoPlayerZatacka extends JFrame {
 	 * @throws HeadlessException
 	 */
 	public TwoPlayerZatacka() throws HeadlessException {
-		this("Simple MultiPlayerZatacka", "Player 1", "Player 2");
+		this("Simple Two Player Zatacka", "Player 1", "Player 2");
 	}
 
 	/**
@@ -150,7 +150,7 @@ public class TwoPlayerZatacka extends JFrame {
 		menuBar.add(menu);
 
 		// Startet neues Spiel
-		item = new JMenuItem("New MultiPlayerZatacka");
+		item = new JMenuItem("New Game");
 		item.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -284,7 +284,7 @@ public class TwoPlayerZatacka extends JFrame {
 		}
 		
 		p1 = new Player(p1_name, new Point2D.Double(start_x, start_y),
-				Direction.WEST, keyConf);
+				Direction.WEST, keyConf, Color.BLUE);
 
 		
 		keyConf = new KeyConfiguration('k', 'ö', 'o', 'l');
@@ -301,7 +301,7 @@ public class TwoPlayerZatacka extends JFrame {
 		}
 		
 		p2 = new Player(p2_name, new Point2D.Double(start_x, start_y),
-				Direction.EAST, keyConf);
+				Direction.EAST, keyConf, Color.RED);
 	}
 
 	// Startet ein neues Spiel
@@ -359,7 +359,7 @@ public class TwoPlayerZatacka extends JFrame {
 		if (p_loose != null) {
 			t_move.stop();
 			t_playtime.stop();
-			setStatus("MultiPlayerZatacka Over! " + p_loose.getName() + " hat verloren!");
+			setStatus("Game Over! " + p_loose.getName() + " hat verloren!");
 			gameRunning = false;
 		} else {
 			p1.addPoint(p1.getSnakeHead());
