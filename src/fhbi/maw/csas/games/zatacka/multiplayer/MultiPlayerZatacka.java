@@ -77,6 +77,9 @@ public class MultiPlayerZatacka extends JFrame {
 
 	// aktualisiert die Spielzeit jede Sekunde
 	private Timer t_playtime;
+	
+	// a configuration window to specify settings
+	private ConfigurationWindow configurationWindow;
 
 	/**
 	 * @throws HeadlessException
@@ -124,6 +127,8 @@ public class MultiPlayerZatacka extends JFrame {
 		
 		this.addMouseListener(new MouseHandler());
 		this.addKeyListener(new KeyHandler());
+		
+		configurationWindow = new ConfigurationWindow(this);
 	}
 
 	/*
@@ -184,6 +189,20 @@ public class MultiPlayerZatacka extends JFrame {
 			}
 		});
 		menu.add(item);
+		
+		// Menü Edit/Bearbeiten
+		menu = new JMenu("Edit");
+		menuBar.add(menu);
+
+		// Zeigt ein Fenster zum Bearbeiten der Spiel-Parameter
+		item = new JMenuItem("Settings");
+		item.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showSettings();
+			}
+		});
+		menu.add(item);
 
 		// Menü Help/Hilfe
 		menu = new JMenu("Help");
@@ -194,7 +213,7 @@ public class MultiPlayerZatacka extends JFrame {
 		item.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				showRulesAndSettings();
+				showRules();
 			}
 		});
 		menu.add(item);
@@ -243,6 +262,20 @@ public class MultiPlayerZatacka extends JFrame {
 		secs = playTime % 60;
 		labelPlayTime.setText(String.format(
 				"Spiel läuft seit %d Min und %d Sek", mins, secs));
+	}
+
+	/**
+	 * @return the speed_ms
+	 */
+	public int getSpeed_ms() {
+		return speed_ms;
+	}
+
+	/**
+	 * @param speed_ms the speed_ms to set
+	 */
+	public void setSpeed_ms(int speed_ms) {
+		this.speed_ms = speed_ms;
 	}
 
 	// Beendet das Spiel
@@ -419,9 +452,13 @@ public class MultiPlayerZatacka extends JFrame {
 		JOptionPane.showMessageDialog(this,
 				"(c) 2012\nChristian Stührmann & Alexander Sundermann");
 	}
+	
+	private void showSettings() {
+		new ConfigurationWindow(this).showSettings();
+	}
 
 	// Zeigt Spielregeln und Steuerung an
-	private void showRulesAndSettings() {
+	private void showRules() {
 		JOptionPane.showMessageDialog(this, "Finde es selber heraus ;-)");
 	}
 
