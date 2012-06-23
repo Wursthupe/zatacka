@@ -221,8 +221,7 @@ public class Game extends JFrame {
 	}
 
 	/*
-	 * Aktualisiere den Status
-	 * 
+	 * Aktualisiere den (Fenster-/Spiel-) Status
 	 * @param statusText Der Statustext
 	 */
 	private void setStatus(String statusText) {
@@ -363,12 +362,7 @@ public class Game extends JFrame {
 			setStatus("Game Over! " + p_loose.getName() + " hat verloren!");
 			gameRunning = false;
 		} else {
-//			double x, y;
-			
-//			x = p1.getX(); y = p1.getY();
 			p1.addPoint(p1.getSnakeHead());
-			
-//			x = p2.getX(); y = p2.getY();
 			p2.addPoint(p2.getSnakeHead());
 		}
 
@@ -463,11 +457,6 @@ public class Game extends JFrame {
 			// else an error will result
 			if (p1 == null || p2 == null)
 				return;
-			
-//			System.out.println(ke.getKeyCode());
-//			System.out.println(ke.isControlDown());
-//			System.out.println(ke.isActionKey());
-//			System.out.println(KeyEvent.VK_P);
 			
 			// pause a running game by typing CTRL + P
 			if (ke.getKeyCode() == KeyEvent.VK_P && ke.isControlDown())
