@@ -13,8 +13,8 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Game game = new Game();
-		game.showGame();
+		TwoPlayerZatacka twoPlayerZatacka = new TwoPlayerZatacka();
+		twoPlayerZatacka.showGame();
 	}
 
 }

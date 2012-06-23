@@ -31,7 +31,7 @@ import javax.swing.Timer;
  * @author Alexander Sundermann
  */
 @SuppressWarnings("serial")
-public class Game extends JFrame {
+public class TwoPlayerZatacka extends JFrame {
 
 	// Fenstergröße, wird statisch und unveränderlich gehalten!
 	private Dimension windowSize;
@@ -76,8 +76,8 @@ public class Game extends JFrame {
 	/**
 	 * @throws HeadlessException
 	 */
-	public Game() throws HeadlessException {
-		this("Simple Game", "Player 1", "Player 2");
+	public TwoPlayerZatacka() throws HeadlessException {
+		this("Simple TwoPlayerZatacka", "Player 1", "Player 2");
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class Game extends JFrame {
 	 * @param p2_name name of player 2
 	 * @throws HeadlessException
 	 */
-	public Game(String title, String p1_name, String p2_name)
+	public TwoPlayerZatacka(String title, String p1_name, String p2_name)
 			throws HeadlessException {
 		super(title);
 
@@ -150,7 +150,7 @@ public class Game extends JFrame {
 		menuBar.add(menu);
 
 		// Startet neues Spiel
-		item = new JMenuItem("New Game");
+		item = new JMenuItem("New TwoPlayerZatacka");
 		item.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -359,7 +359,7 @@ public class Game extends JFrame {
 		if (p_loose != null) {
 			t_move.stop();
 			t_playtime.stop();
-			setStatus("Game Over! " + p_loose.getName() + " hat verloren!");
+			setStatus("TwoPlayerZatacka Over! " + p_loose.getName() + " hat verloren!");
 			gameRunning = false;
 		} else {
 			p1.addPoint(p1.getSnakeHead());
